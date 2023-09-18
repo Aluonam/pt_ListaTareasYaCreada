@@ -17,7 +17,7 @@ function ListaTareasOriginal() {
 
   const listadoTareas = tasksList.map((actualElement, index)=>{
     return(
-        <li>
+        <li key={`${actualElement.charAt(0)}${index}`}>
             {actualElement}
             <BotonCompletarTarea index={index} tasksList={tasksList} setTasksList={setTasksList}></BotonCompletarTarea>
         </li>
