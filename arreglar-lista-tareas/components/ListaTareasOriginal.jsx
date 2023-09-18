@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
+import BotonCompletarTarea from './BotonCompletarTarea';
 
 function ListaTareasOriginal() {
 
-  const [tasks, setTasks] = useState([]);
+  const [tasksList, setTasksList] = useState([]);
   const [newTask, setNewTask] = useState('');
 
-//
   const handleInputChange = (event) => {
     setNewTask(event.target.value);
     console.log("funcion input",event.target.value)
-  };
+  }
 
   const handleAddTask = () => {
-    // if (newTask.trim() !== '') {
-    //   setTasks((prevTasks) => [...prevTasks, newTask]);
-    //   setNewTask('');
-    // }
-    setTasks([...tasks,newTask])
+    setTasksList([...tasksList,newTask])
     setNewTask('')
+  }
 
-  };
+ 
 
-  const handleCompleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index] = `✅ ${updatedTasks[index]}`;
-    setTasks(updatedTasks);
-  };
+
+  const listadoTareas = tasksList.map((actualElement, index)=>{
+    return(
+        <li>
+            {actualElement}
+            <BotonCompletarTarea index={index} tasksList={tasksList} setTasksList={setTasksList}></BotonCompletarTarea>
+        </li>
+    )
+
+  })
+ 
 
   return (
     <div>
@@ -40,11 +43,8 @@ function ListaTareasOriginal() {
         <button onClick={handleAddTask}>Agregar</button>
       </div>
       <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>
-            {task} <button onClick={() => handleCompleteTask(index)}>Completar</button>
-          </li>
-        ))}
+            {listadoTareas}
+
       </ul>
     </div>
   );
