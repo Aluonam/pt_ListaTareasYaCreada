@@ -8,16 +8,12 @@ function ListaTareasOriginal() {
 
   const handleInputChange = (event) => {
     setNewTask(event.target.value);
-    console.log("funcion input",event.target.value)
   }
 
   const handleAddTask = () => {
     setTasksList([...tasksList,newTask])
     setNewTask('')
   }
-
- 
-
 
   const listadoTareas = tasksList.map((actualElement, index)=>{
     return(
